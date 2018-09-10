@@ -48,7 +48,7 @@ function, you can download the community version of PyCharm [here] (https://www.
 ```
 
 If run properly, when finished, this will create two files 'mother_stats.pkl' and
-'children_stats.pkl'. You can find these names in ```simulations.py` and if required
+'children_stats.pkl'. You can find these names in ```simulations.py``` and if required
 can also change these names.
 
 ## Visualizing the result
