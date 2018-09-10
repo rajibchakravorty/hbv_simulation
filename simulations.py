@@ -101,7 +101,6 @@ def simulation_steps():
         #loop for all the children now
         for c in children:
 
-
             # if the child is not alive, continue with the next child
             if not c.is_alive:
                 continue

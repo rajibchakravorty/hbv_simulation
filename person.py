@@ -165,19 +165,6 @@ class Child(Person):
         """
         super(Child, self).__init__(health_status, birth_year, mother, INFANT)
 
-        if self.person_type == INFANT:
-            self.susceptibility_add = 0.2
-            self.infected_add = 0.2
-            self.death_add = 0.2
-        elif self.person_type == CHILD:
-            self.susceptibility_add = 0.1
-            self.infected_add = 0.1
-            self.death_add = 0.1
-        else:
-            self.susceptibility_add = 0.
-            self.infected_add = 0.
-            self.death_add = 0.
-
     def change_state(self):
 
         """
@@ -200,18 +187,6 @@ class Child(Person):
 
         self.change_state()
 
-        if self.person_type == INFANT:
-            self.susceptibility_add = 0.2
-            self.infected_add = 0.2
-            self.death_add = 0.2
-        elif self.person_type == CHILD:
-            self.susceptibility_add = 0.1
-            self.infected_add = 0.1
-            self.death_add = 0.1
-        else:
-            self.susceptibility_add = 0.1
-            self.infected_add = 0.1
-            self.death_add = 0.1
 
 
 
