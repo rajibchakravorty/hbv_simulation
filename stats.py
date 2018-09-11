@@ -30,8 +30,6 @@ def yearly_collection_stats(collection, years, status):
 
             for col in collection:
                 if col.get_health_status(year) == st:
-                    if st == 'hbv dead':
-                        print 'here'
                     year_states[year] += 1
 
         stat[st] = year_states

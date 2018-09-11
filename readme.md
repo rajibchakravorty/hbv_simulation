@@ -1,7 +1,7 @@
 # Simulation of Mother-Child infection of HBV
 
 ## Set up (MAC)
-THe entire process, otherwise mentioned, is run on terminal.
+The entire process, otherwise mentioned, is run on terminal.
 
 ### Installing pip, virtualenv
 
@@ -58,7 +58,9 @@ can also change these names.
 ```bash
 (venv) CODE $ juptyer notebook
 ```
-This will open the default browser (e.g. safari/firfox)
+This will open the default browser (e.g. safari/firfox) and will show the content
+of the folder. Click on ```views.ipynb``` to open it in a new window/tab and then
+move to the new window. You will see visualization code.
 
 From the top menu choose ```kernel->Restart and Run All```. This would reproduce
 all the graphs.

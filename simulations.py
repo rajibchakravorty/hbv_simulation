@@ -45,22 +45,21 @@ def simulation_steps():
         # can the mother give birth in this year
         is_giving_birth = is_mother_giving_birth()
 
-        # if not, contiue with the next mother
+        # if not, continue with the next mother
         if not is_giving_birth:
-            continue
-
-        # if yes, see if the mother dies at child birth
-        maternal_death = is_mother_dead_at_birth()
-
-        # if she does, continue
-        if maternal_death:
-            m.kill(year, MATERNAL_DEATH)
             continue
 
         # finally create the child
         child = create_child(HEALTHY, m, year)
 
         children.append(child)
+
+        # if yes, see if the mother dies at child birth
+        maternal_death = is_mother_dead_at_birth()
+
+        # if she does, record it
+        if maternal_death:
+            m.kill(year, MATERNAL_DEATH)
 
     for year in years[2:]:
 
@@ -83,20 +82,17 @@ def simulation_steps():
             # can she give birth?
             is_giving_birth = is_mother_giving_birth()
 
-            if not is_giving_birth:
-                continue
+            if is_giving_birth:
+
+                # add a new child
+                child = create_child(HEALTHY, m, year)
+                children.append(child)
 
             # is she alive after child birth?
             maternal_death = is_mother_dead_at_birth()
 
             if maternal_death:
                 m.kill(year, MATERNAL_DEATH)
-                continue
-
-            # add a new child
-            child = create_child(HEALTHY, m, year)
-
-            children.append(child)
 
         #loop for all the children now
         for c in children:
@@ -106,7 +102,7 @@ def simulation_steps():
                 continue
 
             # if the child is born this year, continue
-            if child.birth_year == year:
+            if c.birth_year == year:
                 continue
 
             # check if the child is still infant/child/adult
