@@ -13,7 +13,9 @@ from states import HEALTHY, INFECTED, SUSCEPTIBLE, CURED, DEAD, \
 
 def run_multiples(run_number, years):
 
-    for r in range(0, run_number):
+    start_run =run_number[0]
+    end_run = run_number[1]
+    for r in range(start_run, end_run):
 
         print 'Run {0} started'.format(r)
         m, c = simulation_steps(years)
@@ -32,14 +34,15 @@ def run_multiples(run_number, years):
 
 if __name__ == '__main__':
 
-    run_number = 20
+    start_run = 0 
+    end_run = 5
     years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-    run_multiples(run_number, years)
+    run_multiples([start_run, end_run], years)
 
     mothers = []
     children = []
-    for r in range(0, run_number):
+    for r in range(start_run, end_run):
         with open('mothers_stats_run_{0}.pkl'.format(r), 'rb') as f:
             m = cPickle.load(f)
         with open('childreb_stats_run_{0}.pkl'.format(r), 'rb') as f:
