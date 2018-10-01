@@ -19,11 +19,10 @@ import stats
 import cPickle
 
 
-def simulation_steps():
+def simulation_steps(years):
 
     # initialize all mothers first;
     mothers = initialize_mothers(constants.INITIAL_MOTHERS)
-    years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     # mothers are all created in year = 0
     # first children are born in year =1
     year = years[1]
@@ -37,9 +36,9 @@ def simulation_steps():
             m.kill(year, DEAD)
             continue
 
-        # see if mothers health need to change
+        # see if mother's health needs to change
         m.get_next_health_status()
-        # update the mother's history
+        # update the mother's health history
         m.update_history(year, m.health_status)
 
         # can the mother give birth in this year
@@ -54,7 +53,7 @@ def simulation_steps():
 
         children.append(child)
 
-        # if yes, see if the mother dies at child birth
+        # see if the mother dies at child birth
         maternal_death = is_mother_dead_at_birth()
 
         # if she does, record it
@@ -65,7 +64,7 @@ def simulation_steps():
 
         for m in mothers:
 
-            # check if this mother is alove
+            # check if this mother is alive
             if not m.is_alive:
                 continue
 
@@ -94,7 +93,7 @@ def simulation_steps():
             if maternal_death:
                 m.kill(year, MATERNAL_DEATH)
 
-        #loop for all the children now
+        # loop for all the children now
         for c in children:
 
             # if the child is not alive, continue with the next child
@@ -141,6 +140,14 @@ def simulation_steps():
             c.get_next_health_status()
             c.update_history(year, c.health_status)
 
+    return mothers, children
+
+
+if __name__ == '__main__':
+
+    years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    mothers, children = simulation_steps(years)
+
     # collect the information, serialize it and save it
     mother_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, MATERNAL_DEATH]
     mother_stats = stats.yearly_collection_stats(mothers, years, mother_status)
@@ -159,11 +166,6 @@ def simulation_steps():
 
     with open('children_stats.pkl', 'wb') as f:
         cPickle.dump(children_stats, f)
-
-
-if __name__ == '__main__':
-
-    simulation_steps()
 
 
 
