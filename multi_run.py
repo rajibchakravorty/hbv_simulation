@@ -22,7 +22,7 @@ def run_multiples(run_number, years):
 
         with open('mothers_stats_run_{0}.pkl'.format(r), 'wb') as f:
             cPickle.dump(m, f)
-        with open('childreb_stats_run_{0}.pkl'.format(r), 'wb') as f:
+        with open('children_stats_run_{0}.pkl'.format(r), 'wb') as f:
             cPickle.dump(c, f)
 
         print 'Run {0} finished'.format(r)

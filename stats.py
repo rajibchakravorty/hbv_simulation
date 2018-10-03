@@ -25,15 +25,13 @@ def yearly_collection_stats(collection, years, status):
         year_states = dict()
         for year in years:
             year_states[year] = 0
-
-        for year in years:
-
-            for col in collection:
-                if col.get_health_status(year) == st:
-                    year_states[year] += 1
-
         stat[st] = year_states
 
+    for col in collection:
+        for year in years:
+            col_status = col.get_health_status(year)
+            if col_status in status:
+                stat[col_status][year] += 1
     return stat
 
 
