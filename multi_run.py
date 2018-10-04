@@ -34,8 +34,8 @@ def run_multiples(run_number, years):
 
 if __name__ == '__main__':
 
-    start_run = 0 
-    end_run = 5
+    start_run = 0
+    end_run = 1
     years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
     run_multiples([start_run, end_run], years)
