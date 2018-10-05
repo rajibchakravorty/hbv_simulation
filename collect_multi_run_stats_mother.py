@@ -27,6 +27,8 @@ def collect_stats(folder, collection_status, years,
         file_prefix = 'children_stats_run'
 
     for r in range(0, end_run):
+        print(folder)
+        print 'Reading {0}_{1}.pkl'.format(file_prefix, r)
         with open(join(folder, '{0}_{1}.pkl'.format(file_prefix, r)), 'rb') as f:
             collection = cPickle.load(f)
 
@@ -53,6 +55,6 @@ if __name__ == '__main__':
     outfile = 'config_1/collective_mother_stats.pkl'
     collect_stats(folder, mother_status, years, outfile, 10, True)
 
-    child_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, INFANT_DEATH, CHILD_DEATH, HBV_DEATH]
-    outfile = 'config_1/collective_child_stats.pkl'
-    collect_stats(folder, child_status, years, outfile, 10, True)
+    #child_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, INFANT_DEATH, CHILD_DEATH, HBV_DEATH]
+    #outfile = 'config_1/collective_child_stats.pkl'
+    #collect_stats(folder, child_status, years, outfile, 10, False)
