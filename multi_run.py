@@ -4,8 +4,11 @@ Collect statistics over multiple run
 
 import cPickle
 
+from os.path import join
 from simulations import simulation_steps
+from configuration import constants
 
+outfolder = constants.output_folder_prefix
 
 def run_multiples(run_number, years):
 
@@ -16,9 +19,9 @@ def run_multiples(run_number, years):
         print 'Run {0} started'.format(r)
         m, c = simulation_steps(years)
 
-        with open('mothers_stats_run_{0}.pkl'.format(r), 'wb') as f:
+        with open(join(outfolder, 'mothers_stats_run_{0}.pkl'.format(r)), 'wb') as f:
             cPickle.dump(m, f)
-        with open('children_stats_run_{0}.pkl'.format(r), 'wb') as f:
+        with open(join(outfolder, 'mothers_stats_run_{0}.pkl'.format(r)), 'wb') as f:
             cPickle.dump(c, f)
 
         print 'Run {0} finished'.format(r)
