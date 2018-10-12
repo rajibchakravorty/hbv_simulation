@@ -4,11 +4,11 @@ Various methods for actions on Adults
 
 from person import Mother
 
-import constants
-
 from utility import random_less_than
 
-from states import HEALTHY
+from configuration import constants
+
+HEALTHY = constants.HEALTHY
 
 
 def _create_mother(health_status=HEALTHY):
@@ -16,7 +16,7 @@ def _create_mother(health_status=HEALTHY):
     Private Factory method to create a "mother"
 
     health_status: string
-        See states.py for details; Defaults to Healthy
+        See states_1.py for details; Defaults to Healthy
 
     Returns
     Mother

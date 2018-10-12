@@ -4,8 +4,20 @@ Person object
 from numpy.random import rand
 
 from temporal_history import TemporalHistory
-from states import AdultStates, InfantStates, ChildStates, \
-    CURED, DEAD, INFECTED, HEALTHY
+
+from configuration import states
+
+from configuration import constants
+
+
+AdultStates = states.AdultStates
+InfantStates = states.InfantStates
+ChildStates = states.ChildStates
+
+CURED = constants.CURED
+DEAD = constants.DEAD
+INFECTED = constants.INFECTED
+HEALTHY = constants.HEALTHY
 
 ADULT = 'adult'
 INFANT = 'infant'
@@ -17,7 +29,7 @@ class Person(object):
     history: TemporalHistory
         Contains the history of health states for an individual
     health_status : string
-        See states.py for detail
+        See states_1.py for detail
     birth_year: int
         year of the birth : the start of the simulation year is 0
     is_alive : boolean

@@ -7,16 +7,24 @@ from adult import initialize_mothers, is_mother_giving_birth, \
     is_mother_dead_at_birth, is_adult_dead
 from children import create_child, is_child_dead
 
-import constants
-
-from states import HEALTHY, INFECTED, SUSCEPTIBLE, CURED, DEAD, \
-    INFANT_DEATH, CHILD_DEATH, MATERNAL_DEATH, HBV_DEATH
-
-from person import ADULT, INFANT, CHILD
+from person import INFANT, CHILD
 
 import stats
 
 import cPickle
+
+from configuration import constants
+
+HEALTHY = constants.HEALTHY
+INFECTED = constants.INFECTED
+SUSCEPTIBLE = constants.SUSCEPTIBLE
+CURED = constants.CURED
+DEAD = constants.DEAD
+INFANT_DEATH = constants.INFANT_DEATH
+CHILD_DEATH = constants.CHILD_DEATH
+HBV_DEATH = constants.HBV_DEATH
+MATERNAL_DEATH = constants.MATERNAL_DEATH
+
 
 
 def simulation_steps(years):

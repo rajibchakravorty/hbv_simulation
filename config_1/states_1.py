@@ -1,16 +1,5 @@
 
-# 4 HBV related health states
-SUSCEPTIBLE = 'susceptible'
-CURED = 'cured'
-HEALTHY = 'healthy'
-INFECTED = 'infected'
-
-# 4 types of death events
-DEAD = 'dead'
-INFANT_DEATH = 'neonatal death'
-CHILD_DEATH = 'child death'
-MATERNAL_DEATH = 'maternal death'
-HBV_DEATH = 'hbv death'
+from constants_1 import SUSCEPTIBLE, HEALTHY, CURED, INFECTED
 
 
 class States(object):

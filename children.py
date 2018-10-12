@@ -5,17 +5,17 @@ from person import Child
 
 from utility import random_less_than
 
-from states import HEALTHY
+from configuration import constants
 
-from states import INFECTED, SUSCEPTIBLE
-
-import constants
+HEALTHY = constants.HEALTHY
+INFECTED = constants.INFECTED
+SUSCEPTIBLE = constants.INFECTED
 
 
 def create_child(health_status, mother, birth_year):
     """
     Factory method to create Child person
-    :param health_status: string. see states.py for details
+    :param health_status: string. see states_1.py for details
     :param mother: Adult mother of the child
     :param birth_year: int; year of the birth
     :return:
@@ -63,7 +63,7 @@ def is_infant_dead(add_prob=0.):
     :return:
         boolean
     """
-    return random_less_than(constants.INFANT_MORTALITY_RATE+add_prob)
+    return random_less_than(constants.INFANT_MORTALITY_RATE + add_prob)
 
 
 def is_child_dead(add_prob=0.):
@@ -73,7 +73,7 @@ def is_child_dead(add_prob=0.):
     :return:
         boolean
     """
-    return random_less_than(constants.CHILD_MORTALITY_RATE+add_prob)
+    return random_less_than(constants.CHILD_MORTALITY_RATE + add_prob)
 
 
 def is_neonatal_infected(child, mother):

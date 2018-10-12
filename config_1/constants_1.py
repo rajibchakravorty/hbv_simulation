@@ -4,7 +4,19 @@ Various constants for the simulation
 
 import numpy as np
 
-from states import HEALTHY, INFECTED, CURED, SUSCEPTIBLE
+# 4 HBV related health states
+SUSCEPTIBLE = 'susceptible'
+CURED = 'cured'
+HEALTHY = 'healthy'
+INFECTED = 'infected'
+
+# 4 types of death events
+DEAD = 'dead'
+INFANT_DEATH = 'neonatal death'
+CHILD_DEATH = 'child death'
+MATERNAL_DEATH = 'maternal death'
+HBV_DEATH = 'hbv death'
+
 
 # distribution of mother population at the start of the simulation
 
@@ -44,3 +56,8 @@ VACCINATION_RATE = 0.95
 ADD_NEONATAL_DEATH_PROB = 0.4
 ADD_INFANT_DEATH_PROB = 0.3
 ADD_CHILD_DEATH_PROB = 0.2
+
+output_folder_prefix = 'config_1'
+
+
+

@@ -6,9 +6,14 @@ import cPickle
 import stats
 from os.path import join
 
-from states import HEALTHY, INFECTED, SUSCEPTIBLE, CURED, DEAD, \
-    INFANT_DEATH, CHILD_DEATH, MATERNAL_DEATH, HBV_DEATH
+from configuration import constants
 
+HEALTHY = constants.HEALTHY
+INFECTED = constants.INFECTED
+SUSCEPTIBLE = constants.SUSCEPTIBLE
+CURED = constants.CURED
+DEAD = constants.DEAD
+MATERNAL_DEATH = constants.MATERNAL_DEATH
 
 def collect_stats(folder, collection_status, years,
                   outfile, end_run=0, is_mother=True):
@@ -48,13 +53,9 @@ def collect_stats(folder, collection_status, years,
 
 if __name__ == '__main__':
 
-    folder = 'config_1'
+    folder = constants.output_folder_prefix
     years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
     mother_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, MATERNAL_DEATH]
-    outfile = 'config_1/collective_mother_stats.pkl'
+    outfile = join( folder, 'collective_mother_stats.pkl')
     collect_stats(folder, mother_status, years, outfile, 10, True)
-
-    #child_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, INFANT_DEATH, CHILD_DEATH, HBV_DEATH]
-    #outfile = 'config_1/collective_child_stats.pkl'
-    #collect_stats(folder, child_status, years, outfile, 10, False)
