@@ -1,5 +1,5 @@
 
-from constants_1 import SUSCEPTIBLE, HEALTHY, CURED, INFECTED
+from constants_3 import SUSCEPTIBLE, HEALTHY, CURED, INFECTED
 
 
 class States(object):

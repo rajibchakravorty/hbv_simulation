@@ -57,7 +57,7 @@ ADD_NEONATAL_DEATH_PROB = 0.4
 ADD_INFANT_DEATH_PROB = 0.3
 ADD_CHILD_DEATH_PROB = 0.2
 
-output_folder_prefix = 'config_1'
+output_folder_prefix = 'config_3'
 
 
 
