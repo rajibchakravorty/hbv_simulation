@@ -50,14 +50,14 @@ INFANT_MORTALITY_RATE = 30.7 / 1000.  #< 1 year
 CHILD_MORTALITY_RATE = 37.6 / 1000.  # < 5 years
 
 #vaccination
-VACCINATION_RATE = 0.80
+VACCINATION_RATE = 0.90
 
 #add to the natural mortality rate due to infection
 ADD_NEONATAL_DEATH_PROB = 0.4
 ADD_INFANT_DEATH_PROB = 0.3
 ADD_CHILD_DEATH_PROB = 0.2
 
-output_folder_prefix = 'config_1'
+output_folder_prefix = 'config_2'
 
 
 

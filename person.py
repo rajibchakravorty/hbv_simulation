@@ -29,7 +29,7 @@ class Person(object):
     history: TemporalHistory
         Contains the history of health states for an individual
     health_status : string
-        See states_1.py for detail
+        See states_2.py for detail
     birth_year: int
         year of the birth : the start of the simulation year is 0
     is_alive : boolean

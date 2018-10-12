@@ -15,7 +15,7 @@ SUSCEPTIBLE = constants.INFECTED
 def create_child(health_status, mother, birth_year):
     """
     Factory method to create Child person
-    :param health_status: string. see states_1.py for details
+    :param health_status: string. see states_2.py for details
     :param mother: Adult mother of the child
     :param birth_year: int; year of the birth
     :return:
