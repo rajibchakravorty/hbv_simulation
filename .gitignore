@@ -2,4 +2,5 @@
 *.pyc
 venv
 .ipynb_checkpoints
-*.pkl
+config_*/*.pkl
+config_*/*.gz

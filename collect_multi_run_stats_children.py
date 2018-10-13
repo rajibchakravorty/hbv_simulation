@@ -1,7 +1,7 @@
 """
 Collect statistics over multiple run
 """
-
+import gzip
 import cPickle
 import stats
 from os.path import join
@@ -17,10 +17,9 @@ INFANT_DEATH = constants.INFANT_DEATH
 CHILD_DEATH = constants.CHILD_DEATH
 HBV_DEATH = constants.HBV_DEATH
 
-import configuration.constants as constants
 
 def collect_stats(folder, collection_status, years,
-                  outfile, end_run=0, is_mother=True):
+                  outfile, end_run=0, file_prefix='mothers'):
 
     collective_stats = dict()
 
@@ -29,16 +28,13 @@ def collect_stats(folder, collection_status, years,
         for year in years:
             year_states[year] = [0]
         collective_stats[st] = year_states
-
-    if is_mother:
-        file_prefix = 'mothers_stats_run'
-    else:
-        file_prefix = 'children_stats_run'
+ 
+    file_prefix = '{0}_stats_run'.format(file_prefix)
 
     for r in range(0, end_run):
         print(folder)
         print 'Reading {0}_{1}.pkl'.format(file_prefix, r)
-        with open(join(folder, '{0}_{1}.pkl'.format(file_prefix, r)), 'rb') as f:
+        with gzip.open(join(folder, '{0}_{1}.gz'.format(file_prefix, r)), 'rb') as f:
             collection = cPickle.load(f)
 
         run_stat = stats.yearly_collection_stats(collection, years, collection_status)
@@ -61,5 +57,6 @@ if __name__ == '__main__':
     years = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
     child_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, INFANT_DEATH, CHILD_DEATH, HBV_DEATH]
-    outfile = join(folder, 'collective_mother_stats.pkl')
-    collect_stats(folder, child_status, years, outfile, 10, False)
+    outfile = join(folder, 'collective_children_stats.pkl')
+    collect_stats(folder, child_status, years, outfile, 10, 'children')
+    

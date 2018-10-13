@@ -2,6 +2,7 @@
 Collect statistics over multiple run
 """
 
+import gzip
 import cPickle
 import stats
 from os.path import join
@@ -16,7 +17,7 @@ DEAD = constants.DEAD
 MATERNAL_DEATH = constants.MATERNAL_DEATH
 
 def collect_stats(folder, collection_status, years,
-                  outfile, end_run=0, is_mother=True):
+                  outfile, end_run=0, file_prefix='mothers'):
 
     collective_stats = dict()
 
@@ -26,15 +27,12 @@ def collect_stats(folder, collection_status, years,
             year_states[year] = [0]
         collective_stats[st] = year_states
 
-    if is_mother:
-        file_prefix = 'mothers_stats_run'
-    else:
-        file_prefix = 'children_stats_run'
-
+    file_prefix = '{0}_stats_run'.format(file_prefix)
+    
     for r in range(0, end_run):
         print(folder)
         print 'Reading {0}_{1}.pkl'.format(file_prefix, r)
-        with open(join(folder, '{0}_{1}.pkl'.format(file_prefix, r)), 'rb') as f:
+        with gzip.open(join(folder, '{0}_{1}.pkl'.format(file_prefix, r)), 'rb') as f:
             collection = cPickle.load(f)
 
         run_stat = stats.yearly_collection_stats(collection, years, collection_status)
@@ -58,4 +56,4 @@ if __name__ == '__main__':
 
     mother_status = [HEALTHY, SUSCEPTIBLE, INFECTED, CURED, DEAD, MATERNAL_DEATH]
     outfile = join( folder, 'collective_mother_stats.pkl')
-    collect_stats(folder, mother_status, years, outfile, 10, True)
+    collect_stats(folder, mother_status, years, outfile, 10, 'mothers')
