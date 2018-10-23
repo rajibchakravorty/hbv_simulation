@@ -4,19 +4,9 @@ Various constants for the simulation
 
 import numpy as np
 
-# 4 HBV related health states
-SUSCEPTIBLE = 'susceptible'
-CURED = 'cured'
-HEALTHY = 'healthy'
-INFECTED = 'infected'
+from persons import HEALTHY, INFECTED, CURED, SUSCEPTIBLE
 
-# 4 types of death events
-DEAD = 'dead'
-INFANT_DEATH = 'neonatal death'
-CHILD_DEATH = 'child death'
-MATERNAL_DEATH = 'maternal death'
-HBV_DEATH = 'hbv death'
-
+from persons.group import PopulationGroup
 
 # distribution of mother population at the start of the simulation
 
@@ -50,14 +40,24 @@ INFANT_MORTALITY_RATE = 30.7 / 1000.  #< 1 year
 CHILD_MORTALITY_RATE = 37.6 / 1000.  # < 5 years
 
 #vaccination
-VACCINATION_RATE = 0.90
+VACCINATION_RATE = 0.80
 
 #add to the natural mortality rate due to infection
 ADD_NEONATAL_DEATH_PROB = 0.4
 ADD_INFANT_DEATH_PROB = 0.3
 ADD_CHILD_DEATH_PROB = 0.2
 
-output_folder_prefix = 'config_2'
+output_folder_prefix = 'config_1'
 
-
-
+state_transition_matrix,
+                 hbv_prevelance,
+                 transition_matrix_row_dict = None
+male_adult_transition_matrix = np.array([[1.,0,0,0],
+                                         [0,0.8,0.2,0],
+                                         [0,0,0.2,0.8],
+                                         [0,0,0,1.]],
+                                        dtype=np.float32)
+male_group = PopulationGroup(state_transition_matrix=male_adult_transition_matrix,
+                             hbv_prevelance=ADULT_HBV_PREVALENCE,
+                             hbv_exposure=ADULT_EXPOSURE_RATE,
+                             )
