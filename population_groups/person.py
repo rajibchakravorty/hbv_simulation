@@ -7,7 +7,8 @@ Any person in the simulation
 
 import numpy as np
 
-from .constants import (MALE_GENDER, FEMALE_GENDER)
+from .constants import (MALE_GENDER, DEATH)
+
 
 class Person(object):
 
@@ -15,34 +16,31 @@ class Person(object):
                  gender=MALE_GENDER, is_married=False,
                  health_status=dict(),
                  transformation_matrix=dict(),
-                 death_year=-1,
-                 death_probability=0.2):
+                 death_probability=0.2,
+                 config=None):
 
-        self._birth_year = birth_year
-        self._gender = gender
-        self._is_married = is_married
-        self._health_status = health_status
-        self._transformation_matrix = transformation_matrix
-        self._death_year = death_year
+        self.birth_year = birth_year
+        self.gender = gender
+        self.is_married = is_married
+        self.health_status = health_status
+        self.transformation_matrix = transformation_matrix
+        self.death_year = -1
         self.death_probability = death_probability
-
-    def set_transformation_matrix(self, new_transformation_matrix):
-
-        self._transformation_matrix = new_transformation_matrix
+        self.config = config
 
     def get_year_health_status(self, year):
 
-        if not self._health_status.keys():
+        if not self.health_status.keys():
             return None
 
-        if year in self._health_status.keys():
-            return self._health_status[year]
+        if year in self.health_status.keys():
+            return self.health_status[year]
         else:
             return None
 
     def update_health_status(self, year):
 
-        if self._death_year != -1:
+        if self.death_year != -1:
             return
 
         current_status = self.get_year_health_status(year-1)
@@ -50,24 +48,40 @@ class Person(object):
         if current_status is None:
             return
 
-        if current_status not in self._transformation_matrix:
+        if current_status not in self.transformation_matrix:
             raise AttributeError('No transformation possible from {}'.format(
                 current_status))
 
-        transformation = self._transformation_matrix[current_status]
+        transformation = self.transformation_matrix[current_status]
 
         next_status = transformation.choose_state()
 
-        self._health_status[year] = next_status
+        self.health_status[year] = next_status
 
-    def death_event(self, year):
+    def set_death_status(self, year, status=DEATH):
+
+        self.death_year = year
+        self.health_status[year] = status
+
+    def death_event(self, year, death_status=DEATH):
+
+        if self.death_year != -1:
+            return
+
+        health_status = self.get_year_health_status(year-1)
 
         random_number = np.random.random()
 
-        if random_number <= self._death_probability:
+        if random_number <= self.death_probability[health_status]:
 
-            self._death_year = year
+            self.set_death_status(year, death_status)
 
     def change_marital_status(self, new_status):
 
-        self._is_married = False
+        self.is_married = new_status
+
+    def year_events(self, year, death_status=DEATH):
+
+        self.death_event(year, death_status)
+
+        self.update_health_status(year)

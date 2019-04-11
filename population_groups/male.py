@@ -10,13 +10,13 @@ class Male(Person):
                  is_married=False,
                  health_status=dict(),
                  transformation_matrix=dict(),
-                 death_year=-1,
-                 death_probability=0.2):
+                 death_probability=dict(),
+                 config=None):
 
         super(Male, self).__init__(birth_year=birth_year,
                                    gender=MALE_GENDER,
                                    is_married=is_married,
                                    health_status=health_status,
                                    transformation_matrix=transformation_matrix,
-                                   death_year=death_year,
-                                   death_probability=death_probability)
+                                   death_probability=death_probability,
+                                   config=config)
